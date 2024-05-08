@@ -8,6 +8,6 @@ public class IndexController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "Hello cv24 !";
+		return "templates/index.html";
 	}
 }

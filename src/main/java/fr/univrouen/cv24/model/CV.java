@@ -1,47 +1,68 @@
 package fr.univrouen.cv24.model;
 
-import java.io.Serializable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
+@Entity
+public class CV {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-@XmlRootElement(name = "CV")
-@XmlAccessorType(XmlAccessType.NONE)
-public class CV implements Serializable {
-	private static final long serialVersionUID = 2024L;
-	private static int compteur = 1;
-	
-	@XmlElement
-	private Identite identite;
-	
-	@XmlAttribute
-	private Integer id;
-	
-	@XmlElement
-	private String date;
-	
-	@XmlElement
-	private String mel;
-	
-	public CV(String nom, String prenom, String date, String mel) {
-		super();
-		identite = new Identite();
-		this.id = compteur++;
-		this.identite.setNom(nom);
-		this.identite.setPrenom(prenom);
-		this.date = date;
-		this.mel = mel;
+	private String genre;
+	private String prenom;
+	private String nom;
+	private String objectif;
+	private String diplome;
+
+	public Long getId() {
+		return id;
 	}
-	
-	public CV() {
-		
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
-	@Override
-	public String toString() {
-		return ("CV (" + id + ") [" +identite.getNom() + " " + identite.getPrenom() + ", Date nais = " + date + ", mel = " + mel);
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getObjectif() {
+		return objectif;
+	}
+
+	public void setObjectif(String objectif) {
+		this.objectif = objectif;
+	}
+
+	public String getDiplome() {
+		return diplome;
+	}
+
+	public void setDiplome(String diplome) {
+		this.diplome = diplome;
 	}
 }
+

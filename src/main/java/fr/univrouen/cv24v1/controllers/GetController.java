@@ -40,7 +40,7 @@ public class GetController {
 	
 	@RequestMapping(value="/testxml", produces=MediaType.APPLICATION_XML_VALUE)
 	public @ResponseBody CV getXML() {
-		CV cv = new CV("HAMILTON", "Margaret", "1969/07/21", "Appollo11@nasa.us");
+		CV cv = new CV();
 		return cv;
 	}
 	
