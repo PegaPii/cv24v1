@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.univrouen.cv24.model.CV;
-import fr.univrouen.cv24.util.Fichier;
-import fr.univrouen.cv24.util.FichierCV;
 
 @RestController
 public class GetController {
@@ -34,21 +32,9 @@ public class GetController {
 		return ("Test : <br>" + "id = " + id + "<br>titre = " + titre);
 	}
 	
-	@GetMapping("/testfic")
-	public String getFichier() {
-		Fichier fichier = new Fichier();
-		return fichier.loadFileXML();
-	}
-	
 	@RequestMapping(value="/testxml", produces=MediaType.APPLICATION_XML_VALUE)
 	public @ResponseBody CV getXML() {
 		CV cv = new CV();
 		return cv;
-	}
-	
-	@GetMapping("/testcv")
-	public String getFichierCV() {
-		FichierCV fichier = new FichierCV();
-		return fichier.loadFileXML();
 	}
 }
