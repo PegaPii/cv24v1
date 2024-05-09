@@ -1,17 +1,17 @@
-package fr.univrouen.cv24.util;
+package fr.univrouen.cv2421.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
 
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 
-public class Fichier {
-	private Resource resource;
+public class FichierCV {
+private Resource resource;
 	
-	public Fichier() {
-		this.resource = new DefaultResourceLoader().getResource("smallCV.xml");
+	public FichierCV() {
+		this.resource = new DefaultResourceLoader().getResource("tp1.good2.xml");
 	}
 	
 	public String loadFileXML() {
@@ -26,5 +26,4 @@ public class Fichier {
         }
         return content.toString();
     }
-
 }
