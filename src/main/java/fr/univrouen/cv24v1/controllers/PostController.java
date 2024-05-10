@@ -2,13 +2,12 @@ package fr.univrouen.cv24v1.controllers;
 
 import fr.univrouen.cv24v1.model.*;
 import fr.univrouen.cv24v1.repository.CVRepository;
+import fr.univrouen.cv24v1.service.CVService;
 import fr.univrouen.cv24v1.utils.CV24Response;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.StringWriter;
 
 @RestController
@@ -34,19 +27,22 @@ public class PostController {
 	@Autowired
 	private CVRepository cvRepository;
 
+	@Autowired
+	private CVService cvService;
+
 	JAXBContext jaxbContext;
-	Unmarshaller unmarshaller;
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST, consumes = "application/xml",
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<String> insert(@RequestBody String xml) throws JAXBException, SAXException, IOException {
 
-		cv24 cv = (cv24) unmarshaller.unmarshal(new StringReader(xml));
+		if (!cvService.validateXML(xml)) {
+			// Renvoyer une réponse d'erreur avec un code HTTP 400 (Bad Request)
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("<result><status>ERROR</status><message>Invalid XML format</message></result>");
+		}
 
-		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		Schema schema = schemaFactory.newSchema(new StreamSource(new ClassPathResource("/xsd/cv24.tp1.xsd").getInputStream()));
-		Validator validator = schema.newValidator();
-		validator.validate(new StreamSource(new StringReader(xml)));
+		cv24 cv = cvService.stringToCv(xml);
 
 		// Vérifier si le CV existe déjà dans la base de données
 		cv24 existingCv = cvRepository.findByGenreAndNomAndPrenomAndTel(cv.getIdentite().getGenre(),

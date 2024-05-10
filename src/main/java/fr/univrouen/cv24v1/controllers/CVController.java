@@ -54,7 +54,7 @@ public class CVController {
 
     }
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public cv24 getCVById(@PathVariable Long id) {
         return cvRepository.findById(id);
     }
@@ -70,7 +70,7 @@ public class CVController {
         cv24 cv = cvRepository.findById(id);
         cvRepository.delete(cv);
         return "CV supprimé avec succès";
-    }
+    }*/
 
 }
 
