@@ -1,32 +1,39 @@
 package fr.univrouen.cv24v1.model;
 
 import java.io.Serializable;
+
+import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlTransient;
 
+@Table
 @XmlAccessorType(XmlAccessType.NONE)
 public class Lv implements Serializable{
 
 	private static final long serialVersionUID = 1121L;
 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
 	private int id;
 
 	@XmlTransient
 	private int identite_id;
-	
+
+	@Column(name="lang")
 	@XmlAttribute(required=true)
 	private String lang;
 
-
+	@Column(name="cert")
 	@XmlAttribute(required=true)
 	private String cert;
-	
+	@Column(name="nivs")
 	@XmlAttribute
 	private String nivs;
-	
+	@Column(name="nivi")
 	@XmlAttribute
 	private String nivi;
 	

@@ -13,28 +13,22 @@ import fr.univrouen.cv24.model.CV;
 
 @RestController
 public class GetController {
-	
+
 	@GetMapping("/resume")
 	public String getListCVinXML() {
 		return "Envoi de la liste des CV";
 	}
-	
+
 	@GetMapping("/cvid")
 	public String getCVinXML(
-		@RequestParam(value = "texte") String texte) {
+			@RequestParam(value = "texte") String texte) {
 		return ("Détail du CV n°" + texte);
 	}
-	
+
 	@GetMapping("/test")
 	public String getTest(
-		@RequestParam(value = "id") int id,
-		@RequestParam(value = "titre") String titre) {
+			@RequestParam(value = "id") int id,
+			@RequestParam(value = "titre") String titre) {
 		return ("Test : <br>" + "id = " + id + "<br>titre = " + titre);
-	}
-	
-	@RequestMapping(value="/testxml", produces=MediaType.APPLICATION_XML_VALUE)
-	public @ResponseBody CV getXML() {
-		CV cv = new CV();
-		return cv;
 	}
 }

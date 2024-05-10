@@ -4,6 +4,7 @@ import java.io.File;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
 public class TestCV   {
@@ -26,6 +27,9 @@ public class TestCV   {
             CV cv = (CV) jaxbUnmarshaller.unmarshal(file);
 
             cv.debug();
+
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.marshal(cv,new File("src\\main\\resources\\tp_resources\\tp1.good3.xml"));
 
         } catch (JAXBException e) {
             e.printStackTrace();
