@@ -12,4 +12,10 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView("index");
 		return mav;
 	}
+
+	@GetMapping("/help")
+	public ModelAndView help() {
+		ModelAndView mav = new ModelAndView("help");
+		return mav;
+	}
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Aide</title>
+        <link th:href="@{css/help.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Page d'aide</h1>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">URL</th>
+                <th scope="col">METHODE ATTENDUE</th>
+                <th scope="col">ACTION</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td colspan="3">Projet</td>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr>
+                <th scope="row">/</th>
+                <td>GET</td>
+                <td>Retourne la page d'accueil</td>
+            </tr>
+            <tr>
+                <th scope="row">/help</th>
+                <td>GET</td>
+                <td>Retourne la page d'aide</td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
