@@ -3,32 +3,42 @@ package fr.univrouen.cv24v1.model;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlTransient;
 
+@Table
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Diplome implements Serializable{
 
 	private static final long serialVersionUID = 1121L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
 	private int id;
 
 	@XmlTransient
 	private int identite_id;
-	
+
+	@Column(name="niveau")
 	@XmlAttribute
 	private int niveau;
 
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+	@CollectionTable(name = "titres", joinColumns = @JoinColumn(name = "diplome_id"))
+	@Column(name = "titre")
 	@XmlElement(required=true)
 	private List<String> titre;
 
+	@Column(name = "date")
 	@XmlElement(required=true)
 	private String date;
 
+	@Column(name = "institut")
 	private String institut;
 
 	

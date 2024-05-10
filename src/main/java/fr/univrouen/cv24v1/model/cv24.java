@@ -2,35 +2,41 @@ package fr.univrouen.cv24v1.model;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
 
-
+@Table
 @XmlRootElement(name = "cv24")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class cv24 implements Serializable {
 	private static final long serialVersionUID = 2024L;
-	private static int compteur = 1;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
 	private Integer id;
 
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@XmlElement(required=true)
 	private Identite identite;
-	
 
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@XmlElement(required=true)
 	private Objectif objectif;
 
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Prof prof;
 
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@XmlElement(required=true)
 	private Competences competences;
-	
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Divers divers;
 	
 	public cv24() {
