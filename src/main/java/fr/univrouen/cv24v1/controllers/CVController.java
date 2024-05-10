@@ -6,13 +6,13 @@ import fr.univrouen.cv24v1.repository.CVRepository;
 import fr.univrouen.cv24.model.CV;
 
 @RestController
-@RequestMapping("/cv")
+@RequestMapping("/cv24")
 public class CVController {
 
-    @Autowired
+    /*@Autowired
     private CVRepository cvRepository;
 
-    @PostMapping("/add")
+    @PostMapping("/insert")
     public String addCV(@RequestBody CV cv) {
         cvRepository.save(cv);
         return "CV ajouté avec succès";
@@ -34,6 +34,6 @@ public class CVController {
         CV cv = cvRepository.findById(id);
         cvRepository.delete(cv);
         return "CV supprimé avec succès";
-    }
+    }*/
 }
 

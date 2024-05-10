@@ -17,13 +17,13 @@ public class TestCV   {
             // Alternative, I prefer define this via eclipse JAXBContextFactory manually.
 
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(cv24.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(CV.class);
 
             File file = new File("src\\main\\resources\\tp_resources\\tp1.good2.xml");
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            cv24 cv = (cv24) jaxbUnmarshaller.unmarshal(file);
+            CV cv = (CV) jaxbUnmarshaller.unmarshal(file);
 
             cv.debug();
 

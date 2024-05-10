@@ -1,34 +1,13 @@
 package fr.univrouen.cv24v1.repository;
 
-import fr.univrouen.cv24.model.CV;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import fr.univrouen.cv24v1.model.cv24;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CVRepository {
-    @PersistenceContext
-    private EntityManager entityManager;
+public interface CVRepository extends JpaRepository<cv24, Long> {
 
-    @Transactional
-    public void save(CV cv) {
-        entityManager.persist(cv);
-    }
+    cv24 findByGenreAndNomAndPrenomAndTel(String genre, String nom, String prenom, String tel);
 
-    @Transactional
-    public CV findById(Long id) {
-        return entityManager.find(CV.class, id);
-    }
-
-    @Transactional
-    public void update(CV cv) {
-        entityManager.merge(cv);
-    }
-
-    @Transactional
-    public void delete(CV cv) {
-        entityManager.remove(entityManager.contains(cv) ? cv : entityManager.merge(cv));
-    }
 }
 
