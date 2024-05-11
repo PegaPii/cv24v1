@@ -14,11 +14,10 @@ import jakarta.xml.bind.annotation.XmlTransient;
 public class Identite implements Serializable{
 
 	private static final long serialVersionUID = 1121L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long identite_id;
+	private Long id;
 
 	@Column(name="genre")
 	private String genre;
@@ -41,14 +40,15 @@ public class Identite implements Serializable{
 	public Identite() {
 		super();
 	}
-	
-	public Long getId() {
-		return identite_id;
+
+	public Long getIdentite_id() {
+		return id;
 	}
 
-	public void setId(Long id) {
-		this.identite_id = id;
+	public void setIdentite_id(Long identite_id) {
+		this.id = identite_id;
 	}
+
 
 	public String getGenre() {
 		return genre;
@@ -92,7 +92,7 @@ public class Identite implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Identite [id=" + identite_id + ", genre=" + genre + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel
+		return "Identite [id=" + id + ", genre=" + genre + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel
 				+ ", mel=" + mel + "]";
 	}
 

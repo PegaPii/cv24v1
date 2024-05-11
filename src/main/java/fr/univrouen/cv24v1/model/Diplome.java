@@ -20,12 +20,7 @@ public class Diplome implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long diplome_id;
-	@ManyToOne
-	@JoinColumn(name="competences_id")
-	@XmlTransient
-	private Competences competences;
-
+	private Long id;
 	@Column(name="niveau")
 	@XmlAttribute
 	private int niveau;
@@ -49,13 +44,14 @@ public class Diplome implements Serializable{
 	}
 	
 	public Long getId() {
-		return diplome_id;
+		return id;
 	}
 
 
 	public void setId(Long id) {
-		this.diplome_id = id;
+		this.id = id;
 	}
+
 
 
 	public int getNiveau() {
@@ -97,7 +93,7 @@ public class Diplome implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Diplome [id=" + diplome_id + ", identite_id=" + ", niveau=" + niveau + ", titre=" + titre
+		return "Diplome [id=" + id + ", identite_id=" + ", niveau=" + niveau + ", titre=" + titre
 				+ ", date=" + date + ", institut=" + institut + "]";
 	}
 	

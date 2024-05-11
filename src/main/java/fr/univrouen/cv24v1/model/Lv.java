@@ -19,7 +19,7 @@ public class Lv implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int lv_id;
+	private Long id;
 
 	@Column(name="lang")
 	@XmlAttribute(required=true)
@@ -43,13 +43,13 @@ public class Lv implements Serializable{
 	}
 
 
-	public int getId() {
-		return lv_id;
+	public Long getId() {
+		return id;
 	}
 
 
-	public void setId(int id) {
-		this.lv_id = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public String getLang() {
@@ -94,7 +94,7 @@ public class Lv implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Lv [id=" + lv_id + ", identite_id=" + ", lang=" + lang + ", cert=" + cert + ", nivs=" + nivs
+		return "Lv [id=" + id + ", identite_id=" + ", lang=" + lang + ", cert=" + cert + ", nivs=" + nivs
 				+ ", nivi=" + nivi + "]";
 	}
 	

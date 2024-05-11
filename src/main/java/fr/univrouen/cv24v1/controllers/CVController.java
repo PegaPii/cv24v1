@@ -35,7 +35,7 @@ public class CVController {
         else{
             cv24 cv = cvService.stringToCv(body);
             cv.debug();
-            //cvRepository.save(cv);
+            cvRepository.save(cv);
             // Renvoyer le CV enregistré avec un code HTTP 201 (Créé)
             return ResponseEntity.status(HttpStatus.CREATED).body(body);
 

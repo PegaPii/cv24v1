@@ -16,11 +16,10 @@ public class Objectif implements Serializable{
 
 	private static final long serialVersionUID = 1121L;
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long objectif_id;
+	private Long id;
 
 	@Column(name="statut")
 	@XmlAttribute(required=true)
@@ -32,15 +31,15 @@ public class Objectif implements Serializable{
 	public Objectif() {
 		super();
 	}
-	
+
 	public Long getId() {
-		return objectif_id;
+		return id;
 	}
 
-	public void setId(Long id) {
-		this.objectif_id = id;
+	public void setId(Long objectif_id) {
+		this.id = objectif_id;
 	}
-	
+
 	public String getStatut() {
 		return statut;
 	}
@@ -59,7 +58,7 @@ public class Objectif implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Objectif [id=" + objectif_id + ", identite_id=" + ", statut=" + statut + ", objectif=" + objectif
+		return "Objectif [id=" + id + ", identite_id=" + ", statut=" + statut + ", objectif=" + objectif
 				+ "]";
 	}
 

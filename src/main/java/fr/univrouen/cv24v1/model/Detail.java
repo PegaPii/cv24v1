@@ -20,13 +20,7 @@ public class Detail implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long detail_id;
-
-	@ManyToOne
-	@JoinColumn(name="prof_id")
-	@XmlTransient
-	private Prof prof;
-
+	private Long id;
 
 	@Column(name = "titre")
 	@XmlElement(required=true)
@@ -48,13 +42,13 @@ public class Detail implements Serializable{
 
 
 	public Long getId() {
-		return detail_id;
+		return id;
 	}
 
 
 
 	public void setId(Long id) {
-		this.detail_id = id;
+		this.id = id;
 	}
 
 
@@ -97,7 +91,7 @@ public class Detail implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Detail [id=" + detail_id + ", identite_id=" + ", titre=" + titre + ", datedeb=" + datedeb
+		return "Detail [id=" + id + ", identite_id=" + ", titre=" + titre + ", datedeb=" + datedeb
 				+ ", datefin=" + datefin + "]";
 	}
 

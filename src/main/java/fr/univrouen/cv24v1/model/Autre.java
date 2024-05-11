@@ -18,7 +18,7 @@ public class Autre implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long autre_id;
+	private Long id;
 
 	@Column(name="comment")
 	@XmlAttribute
@@ -34,11 +34,11 @@ public class Autre implements Serializable{
 	}
 
 	public Long getId() {
-		return autre_id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		this.autre_id = id;
+		this.id = id;
 	}
 
 	public String getComment() {
@@ -59,7 +59,7 @@ public class Autre implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Autres [id=" + autre_id + ", identite_id=" +  ", comment=" + comment + ", titre=" + titre + "]";
+		return "Autres [id=" + id + ", identite_id=" +  ", comment=" + comment + ", titre=" + titre + "]";
 	}
 	
 	

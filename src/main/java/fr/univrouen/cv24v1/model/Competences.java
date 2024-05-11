@@ -20,15 +20,14 @@ public class Competences implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long competences_id;
+	private Long id;
 
 
-	@OneToMany(mappedBy="competences", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@XmlElement(required=true)
 	private List<Diplome> diplome;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "certif_id")
 	@XmlElement
 	private List<Certif> certif;
 
@@ -37,13 +36,13 @@ public class Competences implements Serializable{
 	public Competences() {
 		super();
 	}
-	
+
 	public Long getId() {
-		return competences_id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		this.competences_id = id;
+		this.id = id;
 	}
 	
 	public List<Diplome> getDiplome() {
@@ -64,7 +63,7 @@ public class Competences implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Competences [id=" + competences_id + ", identite_id=" + ", diplome=" + diplome + ", certif=" + certif
+		return "Competences [id=" + id + ", identite_id=" + ", diplome=" + diplome + ", certif=" + certif
 				+ "]";
 	}
 	

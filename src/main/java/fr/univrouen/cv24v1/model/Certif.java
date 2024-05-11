@@ -18,9 +18,7 @@ public class Certif implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long certif_id;
-
-
+	private Long id;
 	@Column(name="datedeb")
 	@XmlElement(required=true)
 	private String datedeb;
@@ -36,14 +34,14 @@ public class Certif implements Serializable{
 	public Certif() {
 		super();
 	}
-	
+
 	public Long getId() {
-		return certif_id;
+		return id;
 	}
 
 
 	public void setId(Long id) {
-		this.certif_id = id;
+		this.id = id;
 	}
 
 
@@ -78,7 +76,7 @@ public class Certif implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Certif [id=" + certif_id + ", identite_id=" +  ", datedeb=" + datedeb + ", datefin=" + datefin
+		return "Certif [id=" + id + ", identite_id=" +  ", datedeb=" + datedeb + ", datefin=" + datefin
 				+ ", titre=" + titre + "]";
 	}
 

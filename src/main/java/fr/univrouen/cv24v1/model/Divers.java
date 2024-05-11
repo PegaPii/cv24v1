@@ -19,15 +19,13 @@ public class Divers implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private Long divers_id;
+	private Long id;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "lv_id")
 	@XmlElement(required=true)
 	private List<Lv> lv;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "autre_id")
 	@XmlElement(name="autre")
 	private List<Autre> autre;
 
@@ -38,12 +36,12 @@ public class Divers implements Serializable{
 	}
 
 	public Long getId() {
-		return divers_id;
+		return id;
 	}
 
 
 	public void setId(Long id) {
-		this.divers_id = id;
+		this.id = id;
 	}
 
 
@@ -68,7 +66,7 @@ public class Divers implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Divers [id=" + divers_id + ", identite_id=" + ", lv=" + lv + ", autre=" + autre + "]";
+		return "Divers [id=" + id + ", identite_id=" + ", lv=" + lv + ", autre=" + autre + "]";
 	}
 	
 }
