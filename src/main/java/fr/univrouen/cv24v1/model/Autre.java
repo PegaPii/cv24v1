@@ -20,9 +20,6 @@ public class Autre implements Serializable{
 	@XmlTransient
 	private Long id;
 
-	@XmlTransient
-	private int identite_id;
-
 	@Column(name="comment")
 	@XmlAttribute
 	private String comment;
@@ -44,14 +41,6 @@ public class Autre implements Serializable{
 		this.id = id;
 	}
 
-	public int getIdentite_id() {
-		return identite_id;
-	}
-
-	public void setIdentite_id(int identite_id) {
-		this.identite_id = identite_id;
-	}
-
 	public String getComment() {
 		return comment;
 	}
@@ -70,7 +59,7 @@ public class Autre implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Autres [id=" + id + ", identite_id=" + identite_id + ", comment=" + comment + ", titre=" + titre + "]";
+		return "Autres [id=" + id + ", identite_id=" +  ", comment=" + comment + ", titre=" + titre + "]";
 	}
 	
 	

@@ -10,6 +10,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 import org.hibernate.annotations.Cache;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Detail implements Serializable{
 
@@ -19,10 +20,7 @@ public class Detail implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
-
-	@XmlTransient
-	private int identite_id;
+	private Long id;
 
 	@Column(name = "titre")
 	@XmlElement(required=true)
@@ -43,26 +41,14 @@ public class Detail implements Serializable{
 
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-
-	public int getIdentite_id() {
-		return identite_id;
-	}
-
-
-
-	public void setIdentite_id(int identite_id) {
-		this.identite_id = identite_id;
 	}
 
 
@@ -105,7 +91,7 @@ public class Detail implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Detail [id=" + id + ", identite_id=" + identite_id + ", titre=" + titre + ", datedeb=" + datedeb
+		return "Detail [id=" + id + ", identite_id=" + ", titre=" + titre + ", datedeb=" + datedeb
 				+ ", datefin=" + datefin + "]";
 	}
 

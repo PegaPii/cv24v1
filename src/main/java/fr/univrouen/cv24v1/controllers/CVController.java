@@ -3,25 +3,14 @@ package fr.univrouen.cv24v1.controllers;
 import fr.univrouen.cv24v1.model.cv24;
 import fr.univrouen.cv24v1.repository.cv24Repository;
 import fr.univrouen.cv24v1.service.CVService;
-import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
 import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
 
 @RestController
 @RequestMapping("/cv24")
@@ -46,7 +35,7 @@ public class CVController {
         else{
             cv24 cv = cvService.stringToCv(body);
             cv.debug();
-            //cvRepository.save(cv);
+            cvRepository.save(cv);
             // Renvoyer le CV enregistré avec un code HTTP 201 (Créé)
             return ResponseEntity.status(HttpStatus.CREATED).body(body);
 
@@ -56,7 +45,8 @@ public class CVController {
 
     /*@GetMapping("/{id}")
     public cv24 getCVById(@PathVariable Long id) {
-        return cvRepository.findById(id);
+
+        return cvRepository.getById(id);
     }
 
     @PutMapping("/update")
@@ -67,7 +57,7 @@ public class CVController {
 
     @DeleteMapping("/{id}")
     public String deleteCV(@PathVariable Long id) {
-        cv24 cv = cvRepository.findById(id);
+        cv24 cv = cvRepository.getById(id);
         cvRepository.delete(cv);
         return "CV supprimé avec succès";
     }*/

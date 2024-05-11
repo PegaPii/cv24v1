@@ -10,6 +10,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Divers implements Serializable{
 
@@ -18,16 +19,13 @@ public class Divers implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
+	private Long id;
 
-	@XmlTransient
-	private int identite_id;
-
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@XmlElement(required=true)
 	private List<Lv> lv;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@XmlElement(name="autre")
 	private List<Autre> autre;
 
@@ -37,23 +35,13 @@ public class Divers implements Serializable{
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-	public int getIdentite_id() {
-		return identite_id;
-	}
-
-
-	public void setIdentite_id(int identite_id) {
-		this.identite_id = identite_id;
 	}
 
 
@@ -78,7 +66,7 @@ public class Divers implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Divers [id=" + id + ", identite_id=" + identite_id + ", lv=" + lv + ", autre=" + autre + "]";
+		return "Divers [id=" + id + ", identite_id=" + ", lv=" + lv + ", autre=" + autre + "]";
 	}
 	
 }
