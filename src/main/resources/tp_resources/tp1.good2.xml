@@ -44,6 +44,6 @@
     <cv24:lv cert="MAT" lang="fr"/>
     <cv24:lv cert="CLES" nivs="B1" lang="en"/>
     <cv24:lv cert="TOEIC" nivi="620" lang="en"/>
-    <cv24:autre comment="B" titre="Permis de conduire">Autre</cv24:autre>
+    <cv24:autre comment="B" titre="Permis de conduire"/>
   </cv24:divers>
 </cv24:cv24>
