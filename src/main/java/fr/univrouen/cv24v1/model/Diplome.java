@@ -11,6 +11,7 @@ import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Diplome implements Serializable{
 
@@ -19,10 +20,11 @@ public class Diplome implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
-
+	private Long diplome_id;
+	@ManyToOne
+	@JoinColumn(name="competences_id")
 	@XmlTransient
-	private int identite_id;
+	private Competences competences;
 
 	@Column(name="niveau")
 	@XmlAttribute
@@ -46,23 +48,13 @@ public class Diplome implements Serializable{
 		super();
 	}
 	
-	public int getId() {
-		return id;
+	public Long getId() {
+		return diplome_id;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public int getIdentite_id() {
-		return identite_id;
-	}
-
-
-	public void setIdentite_id(int identite_id) {
-		this.identite_id = identite_id;
+	public void setId(Long id) {
+		this.diplome_id = id;
 	}
 
 
@@ -105,7 +97,7 @@ public class Diplome implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Diplome [id=" + id + ", identite_id=" + identite_id + ", niveau=" + niveau + ", titre=" + titre
+		return "Diplome [id=" + diplome_id + ", identite_id=" + ", niveau=" + niveau + ", titre=" + titre
 				+ ", date=" + date + ", institut=" + institut + "]";
 	}
 	

@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Certif implements Serializable{
 
@@ -17,10 +18,8 @@ public class Certif implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
+	private Long certif_id;
 
-	@XmlTransient
-	private int identite_id;
 
 	@Column(name="datedeb")
 	@XmlElement(required=true)
@@ -38,23 +37,13 @@ public class Certif implements Serializable{
 		super();
 	}
 	
-	public int getId() {
-		return id;
+	public Long getId() {
+		return certif_id;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public int getIdentite_id() {
-		return identite_id;
-	}
-
-
-	public void setIdentite_id(int identite_id) {
-		this.identite_id = identite_id;
+	public void setId(Long id) {
+		this.certif_id = id;
 	}
 
 
@@ -89,7 +78,7 @@ public class Certif implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Certif [id=" + id + ", identite_id=" + identite_id + ", datedeb=" + datedeb + ", datefin=" + datefin
+		return "Certif [id=" + certif_id + ", identite_id=" +  ", datedeb=" + datedeb + ", datefin=" + datefin
 				+ ", titre=" + titre + "]";
 	}
 

@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.NONE)
 public class Lv implements Serializable{
 
@@ -18,10 +19,7 @@ public class Lv implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
-
-	@XmlTransient
-	private int identite_id;
+	private int lv_id;
 
 	@Column(name="lang")
 	@XmlAttribute(required=true)
@@ -46,22 +44,12 @@ public class Lv implements Serializable{
 
 
 	public int getId() {
-		return id;
+		return lv_id;
 	}
 
 
 	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public int getIdentite_id() {
-		return identite_id;
-	}
-
-
-	public void setIdentite_id(int identite_id) {
-		this.identite_id = identite_id;
+		this.lv_id = id;
 	}
 	
 	public String getLang() {
@@ -106,7 +94,7 @@ public class Lv implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Lv [id=" + id + ", identite_id=" + identite_id + ", lang=" + lang + ", cert=" + cert + ", nivs=" + nivs
+		return "Lv [id=" + lv_id + ", identite_id=" + ", lang=" + lang + ", cert=" + cert + ", nivs=" + nivs
 				+ ", nivi=" + nivi + "]";
 	}
 	

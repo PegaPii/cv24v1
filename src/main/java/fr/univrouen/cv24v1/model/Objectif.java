@@ -10,6 +10,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlValue;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Objectif implements Serializable{
 
@@ -19,10 +20,7 @@ public class Objectif implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
-
-	@XmlTransient
-	private int identite_id;
+	private Long objectif_id;
 
 	@Column(name="statut")
 	@XmlAttribute(required=true)
@@ -35,20 +33,12 @@ public class Objectif implements Serializable{
 		super();
 	}
 	
-	public int getId() {
-		return id;
+	public Long getId() {
+		return objectif_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getIdentiteId() {
-		return id;
-	}
-
-	public void setIdentiteId(int id) {
-		this.identite_id = id;
+	public void setId(Long id) {
+		this.objectif_id = id;
 	}
 	
 	public String getStatut() {
@@ -69,7 +59,7 @@ public class Objectif implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Objectif [id=" + id + ", identite_id=" + identite_id + ", statut=" + statut + ", objectif=" + objectif
+		return "Objectif [id=" + objectif_id + ", identite_id=" + ", statut=" + statut + ", objectif=" + objectif
 				+ "]";
 	}
 

@@ -8,11 +8,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Component;
 
 @SpringBootApplication
-@EnableJpaRepositories
-@EntityScan( basePackages = {"fr.univrouen.cv24v1.model"} ) // entities package name
+@EnableJpaRepositories("fr.univrouen.cv24v1.*")
+@ComponentScan("fr.univrouen.cv24v1.*")
+@EntityScan("fr.univrouen.cv24v1.*") // entities package name
 public class Cv24v1Application {
 
 
@@ -22,16 +25,6 @@ public class Cv24v1Application {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(Cv24v1Application.class, args);
 		Cv24v1Application app = context.getBean(Cv24v1Application.class);
-		app.persistTestDBs();
-	}
-
-	@Transactional
-	public void persistTestDBs() {
-		System.out.println("caca");
-		for(int i = 0; i < 10; i++){
-			testDB test = new testDB();
-			entityManager.persist(test);
-		}
 	}
 
 }

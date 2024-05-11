@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Identite implements Serializable{
 
@@ -17,7 +18,7 @@ public class Identite implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
+	private Long identite_id;
 
 	@Column(name="genre")
 	private String genre;
@@ -41,12 +42,12 @@ public class Identite implements Serializable{
 		super();
 	}
 	
-	public int getId() {
-		return id;
+	public Long getId() {
+		return identite_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(Long id) {
+		this.identite_id = id;
 	}
 
 	public String getGenre() {
@@ -91,7 +92,7 @@ public class Identite implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Identite [id=" + id + ", genre=" + genre + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel
+		return "Identite [id=" + identite_id + ", genre=" + genre + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel
 				+ ", mel=" + mel + "]";
 	}
 

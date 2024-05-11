@@ -10,6 +10,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
 
 @Table
+@Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Prof implements Serializable{
 
@@ -19,12 +20,9 @@ public class Prof implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@XmlTransient
-	private int id;
+	private Long id;
 
-	@XmlTransient
-	private int identite_id;
-
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "prof",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@XmlElement(required=true)
 	private List<Detail> detail;
 
@@ -35,26 +33,14 @@ public class Prof implements Serializable{
 
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-
-	public int getIdentite_id() {
-		return identite_id;
-	}
-
-
-
-	public void setIdentite_id(int identite_id) {
-		this.identite_id = identite_id;
 	}
 
 	public List<Detail> getDetail() {
@@ -69,7 +55,7 @@ public class Prof implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Prof [id=" + id + ", identite_id=" + identite_id + ", detail=" + detail + "]";
+		return "Prof [id=" + id + ", identite_id=" + ", detail=" + detail + "]";
 	}
 	
 	
