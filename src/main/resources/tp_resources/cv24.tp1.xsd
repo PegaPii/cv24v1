@@ -200,12 +200,8 @@
 </xs:simpleType>
 
 <xs:complexType name="autreType">
-	<xs:simpleContent>
-		<xs:extension base="xs:string">
-			<xs:attribute name="titre" type="string32Type" use="required"/>
-			<xs:attribute name="comment" type="titreType" use="optional"/>
-		</xs:extension>
-	</xs:simpleContent>
+	<xs:attribute name="titre" type="string32Type" use="required"/>
+	<xs:attribute name="comment" type="titreType" use="optional"/>
 </xs:complexType>
 
 </xs:schema>
