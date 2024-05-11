@@ -1,7 +1,14 @@
 package fr.univrouen.cv24v1.utils;
 
+import jakarta.xml.bind.annotation.*;
+
+@XmlRootElement(name="response")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CV24Response {
+
+    @XmlAttribute(required=true)
     private Long id;
+    @XmlElement(required=true)
     private String status;
 
     public Long getId() {

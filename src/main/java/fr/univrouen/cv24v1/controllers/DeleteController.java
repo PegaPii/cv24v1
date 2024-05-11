@@ -1,6 +1,6 @@
 package fr.univrouen.cv24v1.controllers;
 
-import fr.univrouen.cv24v1.repository.CVRepository;
+import fr.univrouen.cv24v1.repository.cv24Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeleteController {
 
     @Autowired
-    private CVRepository cvRepository;
+    private cv24Repository cvRepository;
 
     @DeleteMapping("/delete")
     public String delete(@RequestParam(value = "id") int id) {

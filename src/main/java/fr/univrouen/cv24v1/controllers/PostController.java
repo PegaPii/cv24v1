@@ -1,7 +1,8 @@
 package fr.univrouen.cv24v1.controllers;
 
 import fr.univrouen.cv24v1.model.*;
-import fr.univrouen.cv24v1.repository.CVRepository;
+import fr.univrouen.cv24v1.repository.cv24Repository;
+import fr.univrouen.cv24v1.repository.identiteRepository;
 import fr.univrouen.cv24v1.service.CVService;
 import fr.univrouen.cv24v1.utils.CV24Response;
 import jakarta.xml.bind.JAXBContext;
@@ -25,12 +26,12 @@ import java.io.StringWriter;
 public class PostController {
 
 	@Autowired
-	private CVRepository cvRepository;
-
+	private cv24Repository cvRepository;
+	@Autowired
+	private identiteRepository identiteRepository;
 	@Autowired
 	private CVService cvService;
 
-	JAXBContext jaxbContext;
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST, consumes = "application/xml",
 			produces = MediaType.APPLICATION_XML_VALUE)
@@ -45,36 +46,24 @@ public class PostController {
 		cv24 cv = cvService.stringToCv(xml);
 
 		// Vérifier si le CV existe déjà dans la base de données
-		cv24 existingCv = cvRepository.findByGenreAndNomAndPrenomAndTel(cv.getIdentite().getGenre(),
+		Identite testIdentite = identiteRepository.findByGenreAndNomAndPrenomAndTel(cv.getIdentite().getGenre(),
 				cv.getIdentite().getNom(), cv.getIdentite().getPrenom(), cv.getIdentite().getTel());
-		if (existingCv != null) {
+		if (testIdentite != null) {
 			// Renvoyer une réponse d'erreur avec un code HTTP 409 (Conflit)
 			return ResponseEntity.status(HttpStatus.CONFLICT)
 					.body("<result><status>ERROR</status><message>CV already exists</message></result>");
 		}
-
-		// Générer un nouvel identifiant unique pour le CV
-		Long newId = cvRepository.count() + 1;
-		cv.setId(Math.toIntExact(newId));
 
 		// Enregistrer le CV dans la base de données
 		cvRepository.save(cv);
 
 		// Créer un objet Java de type Cv24Response avec les informations id et status
 		CV24Response response = new CV24Response();
-		response.setId(newId);
+		response.setId(cv.getId());
 		response.setStatus("INSERTED");
-
-		// Créer un Marshaller à partir du JAXBContext
-		Marshaller marshaller = jaxbContext.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-		// Marshaller l'objet Java en flux XML
-		StringWriter writer = new StringWriter();
-		marshaller.marshal(response, writer);
-
+		String result = cvService.responseToXml(response);
 		// Renvoyer le flux XML généré avec un code HTTP 201 (Créé)
-		return ResponseEntity.status(HttpStatus.CREATED).body(writer.toString());
+		return ResponseEntity.status(HttpStatus.CREATED).body(result.toString());
 	}
 }
 

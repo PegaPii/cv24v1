@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface cv24Repository extends JpaRepository<cv24, Long> {
-
 }
