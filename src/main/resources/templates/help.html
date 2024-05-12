@@ -31,6 +31,36 @@
                 <td>GET</td>
                 <td>Retourne la page d'aide</td>
             </tr>
+            <tr>
+                <th scope="row">/cv24/resume/xml</th>
+                <td>GET</td>
+                <td>Retourne la liste les CV stockés dans un flux XML</td>
+            </tr>
+            <tr>
+                <th scope="row">/cv24/resume</th>
+                <td>GET</td>
+                <td>Retourne la liste des CV stockés dans un format HTML</td>
+            </tr>
+            <tr>
+                <th scope="row">/cv24/html?id={id}</th>
+                <td>GET</td>
+                <td>Retourne le détail d'un CV dont l'identifiant est {id} au format HTML</td>
+            </tr>
+            <tr>
+                <th scope="row">/cv24/xml?id={id}</th>
+                <td>GET</td>
+                <td>Retourne le détail d'un CV dont l'identifiant est {id} dans un flux XML</td>
+            </tr>
+            <tr>
+                <th scope="row">/insert</th>
+                <td>POST</td>
+                <td>Ajoute un CV dans la base selon un flux XML, conforme au schéma XSD</td>
+            </tr>
+            <tr>
+                <th scope="row">/delete</th>
+                <td>DELETE</td>
+                <td>Suppression du CV dont l'identifiant est {id}, retourne un flux XML</td>
+            </tr>
             </tbody>
         </table>
     </body>

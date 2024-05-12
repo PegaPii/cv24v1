@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>CV24 - List</title>
+  <title>CV24 - Liste</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h1>CV24 - List</h1>
+<h1>CV24 - Liste</h1>
 <table>
   <thead>
   <tr>
@@ -14,7 +14,9 @@
     <th>Nom</th>
     <th>Prénom</th>
     <th>Téléphone</th>
+    <th>Status de l'objectif</th>
     <th>Objectif</th>
+    <th>Diplôme récent</th>
   </tr>
   </thead>
   <tbody>
@@ -23,7 +25,9 @@
     <td th:text="${cv.identite.nom}"></td>
     <td th:text="${cv.identite.prenom}"></td>
     <td th:text="${cv.identite.tel}"></td>
-    <td th:text="${cv.objectif}"></td>
+    <td th:text="${cv.objectif.statut}"></td>
+    <td th:text="${cv.objectif.objectif}"></td>
+    <td th:text="${cv.competences.diplomeRecent.titre}"></td>
   </tr>
   </tbody>
 </table>

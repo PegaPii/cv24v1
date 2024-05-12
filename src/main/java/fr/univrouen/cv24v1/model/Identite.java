@@ -41,6 +41,13 @@ public class Identite implements Serializable{
 		super();
 	}
 
+	public Identite(String genre, String prenom, String nom, String tel) {
+		this.genre = genre;
+		this.prenom = prenom;
+		this.nom = nom;
+		this.tel = tel;
+	}
+
 	public Long getIdentite_id() {
 		return id;
 	}

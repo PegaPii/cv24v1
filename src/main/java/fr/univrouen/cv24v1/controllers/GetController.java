@@ -2,12 +2,15 @@ package fr.univrouen.cv24v1.controllers;
 
 import java.io.File;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import fr.univrouen.cv24v1.model.ListCV24;
-import fr.univrouen.cv24v1.model.cv24;
+import fr.univrouen.cv24v1.model.*;
+import fr.univrouen.cv24v1.repository.CV24ResponseRepository;
 import fr.univrouen.cv24v1.repository.cv24Repository;
+import fr.univrouen.cv24v1.utils.CV24Response;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -17,11 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,92 +34,80 @@ public class GetController {
 	@Autowired
 	private cv24Repository cvRepository;
 
+	@Autowired
+	private CV24ResponseRepository responseRepository;
+
 	@GetMapping(value = "/resume/xml", produces = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<String> getCVListXML() throws JAXBException {
-		List<cv24> cvList = cvRepository.findAll();
+	public @ResponseBody ListCV24 getCVListXML() throws JAXBException {
+		List<cv24> list = new ArrayList<>();
+		ListCV24 listcv24 = new ListCV24();
 
-		// Créer un Marshaller à partir du JAXBContext
-		Marshaller marshaller = jaxbContext.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		list = cvRepository.findAll();
+		if(!list.isEmpty()) {
+			for(int i = 0; i < list.size(); i++) {
+				cv24 cv = list.get(i);
+				Identite identite = new Identite(cv.getIdentite().getGenre(), cv.getIdentite().getPrenom(),
+												cv.getIdentite().getNom(), cv.getIdentite().getTel());
+				Objectif objectif = new Objectif(cv.getObjectif().getStatut(), cv.getObjectif().getObjectif());
+				Diplome diplome = cv.getCompetences().getDiplomeRecent();
+				Competences competences = new Competences(diplome);
 
-		// Créer un objet Java de type Cv24List pour envelopper la liste de CV
-		ListCV24 cv24List = new ListCV24();
-		cv24List.setCv24(cvList);
+				cv.setIdentite(identite);
+				cv.setObjectif(objectif);
+				cv.setCompetences(competences);
+				cv.setProf(null);
+			}
 
-		// Marshaller l'objet Java en flux XML
-		StringWriter writer = new StringWriter();
-		marshaller.marshal(cv24List, writer);
-
-		// Renvoyer le flux XML généré avec un code HTTP 200 (OK)
-		return ResponseEntity.ok(writer.toString());
+			listcv24.setCv24(list);
+			return listcv24;
+		}
+		return null;
 	}
-
-	/*@GetMapping("/resume")
-	public String getCVList(Model model) {
-		List<cv24> cvList = cvRepository.findAll();
-		model.addAttribute("cvList", cvList);
-		return "listcv";
-	}*/
 
 	@GetMapping("/resume")
 	public ModelAndView getCVList() {
+		List<cv24> cvList = cvRepository.findAll();
 		ModelAndView mav = new ModelAndView("listcv");
+		mav.addObject("cvList", cvList);
 		return mav;
 	}
 
 	@GetMapping(path = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
-	public @ResponseBody ResponseEntity<String> getDetailCVXML(@RequestParam(value = "id") int id) throws JAXBException {
-		Optional<cv24> cv = cvRepository.findById(Long.valueOf(id));
-		if (cv == null) {
-			// Renvoyer une réponse d'erreur avec un code HTTP 404 (Not Found)
-			return ResponseEntity.notFound().build();
-		}
+	public @ResponseBody String getDetailCVXML(@RequestParam(value = "id") int id) throws JAXBException {
+		CV24Response response = new CV24Response();
 
-		// Créer un Marshaller à partir du JAXBContext
-		Marshaller marshaller = jaxbContext.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-		// Marshaller l'objet Java en flux XML
-		StringWriter writer = new StringWriter();
-		marshaller.marshal(cv, writer);
-
-		// Renvoyer le flux XML généré avec un code HTTP 200 (OK)
-		return ResponseEntity.ok(writer.toString());
-
-		/*if(cvRepository.existsById((long) id)) {
+		if(cvRepository.existsById((long) id)) {
 			Optional<cv24> cv = cvRepository.findById((long) id);
 			jaxbContext = JAXBContext.newInstance(cv24.class);
 			marshaller = jaxbContext.createMarshaller();
 			StringWriter stringWriter = new StringWriter();
-			marshaller.marshal(cv, stringWriter);
+			marshaller.marshal(cv.get(), stringWriter);
 
 			return stringWriter.toString();
 		} else {
+			response.setId((long) id);
+			response.setStatus("ERROR");
+			responseRepository.save(response);
 			return "<message>" +
 					"<id>" + id + "</id>" +
 					"<status>" + HttpStatus.NOT_FOUND + "</status>" +
 					"</message>";
-		}*/
+		}
 	}
 
-	@RequestMapping("/html")
-	public String getDetailCVHTML(@RequestParam(value = "id") int id, Model model) {
-		if(cvRepository.existsById((long) id)) {
-			cv24 cv = cvRepository.getById((long) id);
-
-			model.addAttribute("cv", cv);
-			return "cvdetail";
-		} else {
-			model.addAttribute("id", id);
-			return "404";
-		}
-
-		/*cv24 cv = cvRepository.findById(id);
+	@GetMapping("/html")
+	public ModelAndView getDetailCVHTML(@RequestParam(value = "id") int id) {
+		cv24 cv = cvRepository.findById((long) id).orElse(null);
+		CV24Response response = new CV24Response();
 		if (cv == null) {
-			return "cv24-not-found";
+			response.setId((long) id);
+			response.setStatus("ERROR");
+			responseRepository.save(response);
+			return new ModelAndView("error", "id", id);
+		} else {
+			ModelAndView modelAndView = new ModelAndView("cvdetail");
+			modelAndView.addObject("cv", cv);
+			return modelAndView;
 		}
-		model.addAttribute("cv", cv);
-		return "cvdetail";*/
 	}
-
 }

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>CV24 - Details</title>
+  <title>CV24 - Détails</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h1>CV24 - Details</h1>
+<h1>CV24 - Détails</h1>
 <h2 th:text="${cv.identite.nom} + ' ' + ${cv.identite.prenom}"></h2>
 <p>Genre : <span th:text="${cv.identite.genre}"></span></p>
 <p>Téléphone : <span th:text="${cv.identite.tel}"></span></p>
-<p>Objectif : <span th:text="${cv.objectif}"></span></p>
+<p>Objectif : <span th:text="${cv.objectif.statut}"></span> = <span th:text="${cv.objectif.objectif}"></span></p>
 <h3>Expériences professionnelles</h3>
 <ul>
   <li th:each="exp : ${cv.prof.detail}" th:text="${exp.titre} + ' (' + ${exp.datedeb} + ' - ' + ${exp.datefin} + ') '"></li>
@@ -28,6 +28,6 @@
 <ul>
   <li th:each="autre : ${cv.divers.autre}" th:text="${autre.titre} + ' (' + ${autre.comment} + ') '"></li>
 </ul>
-<a href="/cv24/list">Retour à la liste des CV</a>
+<a href="/cv24/resume">Retour à la liste des CV</a>
 </body>
 </html>

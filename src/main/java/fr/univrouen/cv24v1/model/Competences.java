@@ -1,6 +1,8 @@
 package fr.univrouen.cv24v1.model;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -32,8 +34,11 @@ public class Competences implements Serializable{
 	private List<Certif> certif;
 
 
-	
 	public Competences() {
+		super();
+	}
+
+	public Competences(Diplome diplome) {
 		super();
 	}
 
@@ -65,6 +70,19 @@ public class Competences implements Serializable{
 	public String toString() {
 		return "Competences [id=" + id + ", identite_id=" + ", diplome=" + diplome + ", certif=" + certif
 				+ "]";
+	}
+
+	//Fonction outil
+
+	public Diplome getDiplomeRecent() {
+		List<Diplome> diplomeList = this.getDiplome();
+		Collections.sort(diplomeList, new Comparator<Diplome>() {
+			@Override
+			public int compare(Diplome d1, Diplome d2) {
+				return d2.getDate().compareTo(d1.getDate());
+			}
+		});
+		return diplomeList.isEmpty() ? null : diplomeList.get(0);
 	}
 	
 }

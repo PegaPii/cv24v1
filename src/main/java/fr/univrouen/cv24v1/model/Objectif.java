@@ -32,6 +32,11 @@ public class Objectif implements Serializable{
 		super();
 	}
 
+	public Objectif(String statut, String objectif) {
+		this.statut = statut;
+		this.objectif = objectif;
+	}
+
 	public Long getId() {
 		return id;
 	}
