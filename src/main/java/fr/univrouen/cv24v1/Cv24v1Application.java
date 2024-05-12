@@ -19,6 +19,7 @@ public class Cv24v1Application {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(Cv24v1Application.class, args);
 		Cv24v1Application app = context.getBean(Cv24v1Application.class);
+
 	}
 
 }
