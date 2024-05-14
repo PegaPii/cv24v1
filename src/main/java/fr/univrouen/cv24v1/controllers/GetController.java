@@ -73,15 +73,15 @@ public class GetController {
 	}
 
 	@GetMapping(path = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
-	public @ResponseBody String getDetailCVXML(@RequestParam(value = "id") int id) throws JAXBException {
+	public @ResponseBody String getDetailCVXML(@PathVariable(value = "id") int id) throws JAXBException {
 		CV24Response response = new CV24Response();
 
 		if(cvRepository.existsById((long) id)) {
-			Optional<cv24> cv = cvRepository.findById((long) id);
+			cv24 cv = cvRepository.getById((long) id);
 			jaxbContext = JAXBContext.newInstance(cv24.class);
 			marshaller = jaxbContext.createMarshaller();
 			StringWriter stringWriter = new StringWriter();
-			marshaller.marshal(cv.get(), stringWriter);
+			marshaller.marshal(cv, stringWriter);
 
 			return stringWriter.toString();
 		} else {
@@ -96,7 +96,7 @@ public class GetController {
 	}
 
 	@GetMapping("/html")
-	public ModelAndView getDetailCVHTML(@RequestParam(value = "id") int id) {
+	public ModelAndView getDetailCVHTML(@PathVariable(value = "id") int id) {
 		cv24 cv = cvRepository.findById((long) id).orElse(null);
 		CV24Response response = new CV24Response();
 		if (cv == null) {
