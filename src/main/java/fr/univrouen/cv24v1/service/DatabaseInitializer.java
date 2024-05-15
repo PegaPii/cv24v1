@@ -3,6 +3,7 @@ package fr.univrouen.cv24v1.service;
 import fr.univrouen.cv24v1.model.cv24;
 import fr.univrouen.cv24v1.repository.cv24Repository;
 import fr.univrouen.cv24v1.utils.CV24Response;
+import jakarta.transaction.Transactional;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;

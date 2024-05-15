@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "b8f9fefb-7149-44a7-9004-f854fbfc773c",
+		"name": "cv24v1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33754180"
+	},
+	"item": [
+		{
+			"name": "Afficher aide",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localhost}}help",
+					"host": [
+						"{{localhost}}help"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Afficher accueil",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localhost}}help",
+					"host": [
+						"{{localhost}}help"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Afficher liste cv (HTML)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{clevercloud}}cv24/resume",
+					"host": [
+						"{{clevercloud}}cv24"
+					],
+					"path": [
+						"resume"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Afficher liste cv (XML)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{clevercloud}}cv24/resume/xml",
+					"host": [
+						"{{clevercloud}}cv24"
+					],
+					"path": [
+						"resume",
+						"xml"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Afficher détail cv (HTML) (cv n°1 par défaut)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{clevercloud}}cv24/html?id=1",
+					"host": [
+						"{{clevercloud}}cv24"
+					],
+					"path": [
+						"html"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Afficher détail cv (XML) (cv n°1 par défaut)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{clevercloud}}cv24/xml?id=1",
+					"host": [
+						"{{clevercloud}}cv24"
+					],
+					"path": [
+						"xml"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insérer cv",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cv24:cv24 xmlns:cv24=\"http://univ.fr/cv24\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://univ.fr/cv24 ../tp_resources/cv24.tp1.xsd \">\r\n  <cv24:identite>\r\n    <cv24:genre>M.</cv24:genre>\r\n    <cv24:nom>TEST</cv24:nom>\r\n    <cv24:prenom>Insertion</cv24:prenom>\r\n    <cv24:tel>0123456789</cv24:tel>\r\n    <cv24:mel>nomprenom@gmail.com</cv24:mel>\r\n  </cv24:identite>\r\n  <cv24:objectif statut=\"stage\">Stage</cv24:objectif>\r\n  <cv24:prof>\r\n    <cv24:detail>\r\n      <cv24:titre>Développement web</cv24:titre>\r\n      <cv24:datedeb>2021-01-19</cv24:datedeb>\r\n    </cv24:detail>\r\n    <cv24:detail>\r\n      <cv24:titre>Développement .NET</cv24:titre>\r\n      <cv24:datedeb>2022-06-29</cv24:datedeb>\r\n      <cv24:datefin>2022-12-29</cv24:datefin>\r\n    </cv24:detail>\r\n  </cv24:prof>\r\n  <cv24:competences>\r\n    <cv24:diplome niveau=\"4\">\r\n      <cv24:titre>Bac</cv24:titre>\r\n      <cv24:date>2019-07-20</cv24:date>\r\n      <cv24:institut>LAY</cv24:institut>\r\n    </cv24:diplome>\r\n    <cv24:diplome niveau=\"6\">\r\n      <cv24:titre>Licence info</cv24:titre>\r\n      <cv24:date>2023-06-15</cv24:date>\r\n      <cv24:institut>Université Rouen Normandie</cv24:institut>\r\n    </cv24:diplome>\r\n    <cv24:certif>\r\n      <cv24:datedeb>2015-04-09</cv24:datedeb>\r\n      <cv24:titre>Scrum Master</cv24:titre>\r\n    </cv24:certif>\r\n    <cv24:certif>\r\n      <cv24:datedeb>2018-03-22</cv24:datedeb>\r\n      <cv24:datefin>2019-03-22</cv24:datefin>\r\n      <cv24:titre>PSC1</cv24:titre>\r\n    </cv24:certif>\r\n  </cv24:competences>\r\n  <cv24:divers>\r\n    <cv24:lv cert=\"MAT\" lang=\"fr\"/>\r\n    <cv24:lv cert=\"CLES\" nivs=\"B1\" lang=\"en\"/>\r\n    <cv24:lv cert=\"TOEIC\" nivi=\"620\" lang=\"en\"/>\r\n    <cv24:autre comment=\"B\" titre=\"Permis de conduire\"/>\r\n  </cv24:divers>\r\n</cv24:cv24>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{clevercloud}}cv24/insert",
+					"host": [
+						"{{clevercloud}}cv24"
+					],
+					"path": [
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insérer mauvais cv",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cv24:cv24 xmlns:cv24=\"http://univ.fr/cv24\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://univ.fr/cv24 ../tp_resources/cv24.tp1.xsd \">\r\n  <cv24:identite>\r\n    <cv24:genre>M.</cv24:genre>\r\n    <cv24:nom>TEST</cv24:nom>\r\n    <cv24:tel>0123456789</cv24:tel>\r\n    <cv24:mel>nomprenom@gmail.com</cv24:mel>\r\n  </cv24:identite>\r\n  <cv24:objectif statut=\"stage\">Stage</cv24:objectif>\r\n  <cv24:prof>\r\n    <cv24:detail>\r\n      <cv24:titre>Développement web</cv24:titre>\r\n      <cv24:datedeb>2021-01-19</cv24:datedeb>\r\n    </cv24:detail>\r\n    <cv24:detail>\r\n      <cv24:titre>Développement .NET</cv24:titre>\r\n      <cv24:datedeb>2022-06-29</cv24:datedeb>\r\n      <cv24:datefin>2022-12-29</cv24:datefin>\r\n    </cv24:detail>\r\n  </cv24:prof>\r\n  <cv24:competences>\r\n    <cv24:diplome niveau=\"4\">\r\n      <cv24:titre>Bac</cv24:titre>\r\n      <cv24:date>2019-07-20</cv24:date>\r\n      <cv24:institut>LAY</cv24:institut>\r\n    </cv24:diplome>\r\n    <cv24:diplome niveau=\"6\">\r\n      <cv24:titre>Licence info</cv24:titre>\r\n      <cv24:date>2023-06-15</cv24:date>\r\n      <cv24:institut>Université Rouen Normandie</cv24:institut>\r\n    </cv24:diplome>\r\n    <cv24:certif>\r\n      <cv24:datedeb>2015-04-09</cv24:datedeb>\r\n      <cv24:titre>Scrum Master</cv24:titre>\r\n    </cv24:certif>\r\n    <cv24:certif>\r\n      <cv24:datedeb>2018-03-22</cv24:datedeb>\r\n      <cv24:datefin>2019-03-22</cv24:datefin>\r\n      <cv24:titre>PSC1</cv24:titre>\r\n    </cv24:certif>\r\n  </cv24:competences>\r\n  <cv24:divers>\r\n    <cv24:lv cert=\"MAT\" lang=\"fr\"/>\r\n    <cv24:lv cert=\"CLES\" nivs=\"B1\" lang=\"en\"/>\r\n    <cv24:lv cert=\"TOEIC\" nivi=\"620\" lang=\"en\"/>\r\n    <cv24:autre comment=\"B\" titre=\"Permis de conduire\"/>\r\n  </cv24:divers>\r\n</cv24:cv24>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{clevercloud}}cv24/insert",
+					"host": [
+						"{{clevercloud}}cv24"
+					],
+					"path": [
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer CV (n°1 par défaut)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{localhost}}cv24/delete",
+					"host": [
+						"{{localhost}}cv24"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "localhost:8080/",
+			"type": "string"
+		},
+		{
+			"key": "clevercloud",
+			"value": "https://cv24v1.cleverapps.io/",
+			"type": "string"
+		}
+	]
+}

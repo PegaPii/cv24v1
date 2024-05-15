@@ -75,49 +75,5 @@ public class PostController {
 		// Renvoyer le flux XML généré avec un code HTTP 201 (Créé)
 		return ResponseEntity.status(HttpStatus.CREATED).body(result.toString());
 	}
-
-
-	@RequestMapping(value = "/insertTest", method = RequestMethod.POST, consumes = "application/xml",
-			produces = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<String> insertTest(@RequestBody String xml) throws JAXBException, SAXException, IOException {
-		CV24Response response = new CV24Response();
-		if (!cvService.validateXML(xml)) {
-			response.setStatus("ERROR");
-			response.setDetail("INVALID");
-			responseRepository.save(response);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body(cvService.responseToXml(response));
-		}
-
-		cv24 cv = cvService.stringToCv(xml);
-
-		// Vérifier si le CV existe déjà dans la base de données
-		Identite testIdentite = identiteRepository.findByGenreAndNomAndPrenomAndTel(cv.getIdentite().getGenre(),
-				cv.getIdentite().getNom(), cv.getIdentite().getPrenom(), cv.getIdentite().getTel());
-		if (testIdentite != null) {
-			response.setStatus("ERROR");
-			response.setDetail("DUPLICATED");
-			responseRepository.save(response);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body(cvService.responseToXml(response));
-		}
-
-		// Enregistrer le CV dans la base de données
-		cvRepository.saveAndFlush(cv);
-		List<cv24> l = cvRepository.findAll();
-		StringBuffer sb = new StringBuffer();
-		ListCV24 list = new ListCV24();
-		List<cv24> subl = new ArrayList<cv24>();
-		System.out.println("nb de cv trouvés : " + l.size());
-		for(cv24 cvl : l){
-			System.out.println("id de cv : " + cvl.getId());
-			cvRepository.getById(cvl.getId());
-			cvl.debug();
-			subl.add(cvl);
-		}
-		list.setCv24(subl);
-		// Renvoyer le flux XML généré avec un code HTTP 201 (Créé)
-		return ResponseEntity.status(HttpStatus.CREATED).body(cvService.CvListToString(list));
-	}
 }
 
