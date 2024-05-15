@@ -62,6 +62,8 @@ public class PostController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(cvService.responseToXml(response));
 		}
+		System.out.println("cv :");
+		System.out.println(cv.getIdentite().getGenre());
 
 		// Enregistrer le CV dans la base de données
 		cvRepository.save(cv);

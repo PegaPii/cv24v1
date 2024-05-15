@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv24:cv24 xmlns:cv24="http://univ.fr/cv24" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://univ.fr/cv24 cv24.tp1.xsd ">
+    <cv24:identite>
+        <cv24:genre>M.</cv24:genre>
+        <cv24:nom>SAPIN</cv24:nom>
+        <cv24:prenom>Robin</cv24:prenom>
+        <cv24:tel>0605589874</cv24:tel>
+        <cv24:mel>robinsapin@gmail.com</cv24:mel>
+    </cv24:identite>
+    <cv24:objectif statut="emploi">Développeur Java</cv24:objectif>
+    <cv24:prof>
+        <cv24:detail>
+            <cv24:titre>Testeur</cv24:titre>
+            <cv24:datedeb>2022-06-19</cv24:datedeb>
+            <cv24:datefin>2023-05-04</cv24:datefin>
+        </cv24:detail>
+        <cv24:detail>
+            <cv24:titre>Développeur Full Stack</cv24:titre>
+            <cv24:datedeb>2023-07-01</cv24:datedeb>
+            <cv24:datefin>2023-12-11</cv24:datefin>
+        </cv24:detail>
+    </cv24:prof>
+    <cv24:competences>
+        <cv24:diplome niveau="4">
+            <cv24:titre>Bac</cv24:titre>
+            <cv24:date>2017-07-20</cv24:date>
+            <cv24:institut>Lycée</cv24:institut>
+        </cv24:diplome>
+        <cv24:diplome niveau="6">
+            <cv24:titre>DUT</cv24:titre>
+            <cv24:date>2022-06-15</cv24:date>
+            <cv24:institut>Université Rouen Normandie</cv24:institut>
+        </cv24:diplome>
+        <cv24:certif>
+            <cv24:datedeb>2019-08-09</cv24:datedeb>
+            <cv24:titre>Toic</cv24:titre>
+        </cv24:certif>
+        <cv24:certif>
+            <cv24:datedeb>2018-03-22</cv24:datedeb>
+            <cv24:datefin>2019-03-22</cv24:datefin>
+            <cv24:titre>PSC2</cv24:titre>
+        </cv24:certif>
+    </cv24:competences>
+    <cv24:divers>
+        <cv24:lv cert="MAT" lang="fr"/>
+        <cv24:lv cert="CLES" nivs="B1" lang="en"/>
+        <cv24:lv cert="TOEIC" nivi="200" lang="en"/>
+        <cv24:autre comment="B" titre="Permis de conduire"/>
+    </cv24:divers>
+</cv24:cv24>

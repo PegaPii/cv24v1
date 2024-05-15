@@ -36,6 +36,7 @@ public class CVService {
         JAXBContext jaxbContext = JAXBContext.newInstance(cv24.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
         marshaller.setEventHandler(new DefaultValidationEventHandler() {
             @Override
             public boolean handleEvent(ValidationEvent event) {
@@ -55,6 +56,7 @@ public class CVService {
         JAXBContext jaxbContext = JAXBContext.newInstance(ListCV24.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 
         // Marshaller l'objet Java en flux XML
         StringWriter writer = new StringWriter();

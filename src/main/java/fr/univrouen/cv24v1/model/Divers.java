@@ -21,11 +21,11 @@ public class Divers implements Serializable{
 	@XmlTransient
 	private Long id;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@XmlElement(required=true)
 	private List<Lv> lv;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@XmlElement(name="autre")
 	private List<Autre> autre;
 

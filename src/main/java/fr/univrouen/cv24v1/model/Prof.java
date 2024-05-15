@@ -22,7 +22,7 @@ public class Prof implements Serializable{
 	@XmlTransient
 	private Long id;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@XmlElement(required=true)
 	private List<Detail> detail;
 

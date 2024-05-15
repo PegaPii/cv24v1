@@ -27,7 +27,11 @@ public class DatabaseInitializer implements CommandLineRunner {
         File file = new File(getClass().getResource("/tp_resources/tp1.good2.xml").getFile());
         String xml = new String(Files.readAllBytes(file.toPath()));
         cv24 cv = cvService.stringToCv(xml);
+        File file2 = new File(getClass().getResource("/tp_resources/example2.xml").getFile());
+        String xml2 = new String(Files.readAllBytes(file2.toPath()));
+        cv24 cv2 = cvService.stringToCv(xml2);
 
         cv24Repository.save(cv);
+        cv24Repository.save(cv2);
     }
 }
