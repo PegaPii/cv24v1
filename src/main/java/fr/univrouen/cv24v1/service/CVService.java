@@ -1,11 +1,10 @@
 package fr.univrouen.cv24v1.service;
 
+import fr.univrouen.cv24v1.model.ListCV24;
 import fr.univrouen.cv24v1.model.cv24;
 import fr.univrouen.cv24v1.utils.CV24Response;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.*;
+import jakarta.xml.bind.helpers.DefaultValidationEventHandler;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
@@ -29,6 +28,38 @@ public class CVService {
         StringReader reader = new StringReader(str);
         cv24 cv = (cv24) unmarshaller.unmarshal(reader);
         return cv;
+    }
+
+
+    public String CvToString(cv24 cv) throws JAXBException {
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(cv24.class);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setEventHandler(new DefaultValidationEventHandler() {
+            @Override
+            public boolean handleEvent(ValidationEvent event) {
+                System.out.println("Marshalling event: " + event);
+                return super.handleEvent(event);
+            }
+        });
+
+        // Marshaller l'objet Java en flux XML
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(cv, writer);
+        return writer.toString();
+    }
+
+    public String CvListToString(ListCV24 list) throws JAXBException {
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(ListCV24.class);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        // Marshaller l'objet Java en flux XML
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(list, writer);
+        return writer.toString();
     }
 
     public String responseToXml(CV24Response response) throws JAXBException {

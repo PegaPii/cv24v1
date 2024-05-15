@@ -106,9 +106,8 @@ public class cv24 implements Serializable {
 	}
 
 	public void debug() {
-		System.out.println(identite.toString()+" \n");
 		System.out.println(toString());
 	}
-	
+
 
 }

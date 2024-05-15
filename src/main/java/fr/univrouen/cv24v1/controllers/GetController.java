@@ -72,7 +72,7 @@ public class GetController {
 		return mav;
 	}
 
-	@GetMapping(path = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
+	@GetMapping(path = "/xml/{id}", produces = MediaType.APPLICATION_XML_VALUE)
 	public @ResponseBody String getDetailCVXML(@PathVariable(value = "id") int id) throws JAXBException {
 		CV24Response response = new CV24Response();
 
@@ -95,7 +95,7 @@ public class GetController {
 		}
 	}
 
-	@GetMapping("/html")
+	@GetMapping("/html/{id}")
 	public ModelAndView getDetailCVHTML(@PathVariable(value = "id") int id) {
 		cv24 cv = cvRepository.findById((long) id).orElse(null);
 		CV24Response response = new CV24Response();
