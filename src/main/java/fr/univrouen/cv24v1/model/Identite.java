@@ -20,6 +20,7 @@ public class Identite implements Serializable{
 	private Long id;
 
 	@Column(name="genre")
+	@XmlElement(required=true)
 	private String genre;
 
 

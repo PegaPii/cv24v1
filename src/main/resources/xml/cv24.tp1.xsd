@@ -101,7 +101,7 @@
 <xs:complexType name="competencesType">
 	<xs:sequence>
 		<xs:element name="diplome" type="diplomeType" minOccurs="1" maxOccurs="5"/>
-		<xs:element name="certif" type="certifType" minOccurs="1" maxOccurs="unbounded"/>
+		<xs:element name="certif" type="certifType" minOccurs="0" maxOccurs="unbounded"/>
 	</xs:sequence>
 </xs:complexType>
 
@@ -113,7 +113,7 @@
 
 <xs:complexType name="diplomeType">
 	<xs:sequence>
-		<xs:element name="titre" type="titreType" minOccurs="1" maxOccurs="1"></xs:element>
+		<xs:element name="titre" type="titreType" minOccurs="1" maxOccurs="5"></xs:element>
 		<xs:element name="date" type="xs:date" minOccurs="1" maxOccurs="1"/>
 		<xs:element name="institut" type="string32Type" minOccurs="0" maxOccurs="1"/>
 	</xs:sequence>

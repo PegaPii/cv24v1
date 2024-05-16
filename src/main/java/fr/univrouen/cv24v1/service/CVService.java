@@ -14,7 +14,6 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -80,7 +79,7 @@ public class CVService {
     public boolean validateXML(String str) throws IOException, SAXException {
         try {
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = schemaFactory.newSchema(new StreamSource(new ClassPathResource("tp_resources/cv24.tp1.xsd").getInputStream()));
+            Schema schema = schemaFactory.newSchema(new StreamSource(new ClassPathResource("xml/cv24.tp1.xsd").getInputStream()));
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(new StringReader(str)));
         }

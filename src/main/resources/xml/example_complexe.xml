@@ -23,6 +23,8 @@
     <cv24:competences>
         <cv24:diplome niveau="4">
             <cv24:titre>Bac</cv24:titre>
+            <cv24:titre>Scientifique</cv24:titre>
+            <cv24:titre>Spécialité SVT</cv24:titre>
             <cv24:date>2017-07-20</cv24:date>
             <cv24:institut>Lycée</cv24:institut>
         </cv24:diplome>
@@ -46,5 +48,6 @@
         <cv24:lv cert="CLES" nivs="B1" lang="en"/>
         <cv24:lv cert="TOEIC" nivi="200" lang="en"/>
         <cv24:autre comment="B" titre="Permis de conduire"/>
+        <cv24:autre comment="Mention bien" titre="Brevet de Secourisme"/>
     </cv24:divers>
 </cv24:cv24>
