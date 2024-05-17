@@ -1,35 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <title>CV24 - Liste</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<h1>CV24 - Liste</h1>
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Nom</th>
-    <th>Prénom</th>
-    <th>Téléphone</th>
-    <th>Status de l'objectif</th>
-    <th>Objectif</th>
-    <th>Diplôme récent</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="cv : ${cvList}">
-    <td th:text="${cv.id}"></td>
-    <td th:text="${cv.identite.nom}"></td>
-    <td th:text="${cv.identite.prenom}"></td>
-    <td th:text="${cv.identite.tel}"></td>
-    <td th:text="${cv.objectif.statut}"></td>
-    <td th:text="${cv.objectif.objectif}"></td>
-    <td th:text="${cv.competences.diplomeRecent.titre}"></td>
-  </tr>
-  </tbody>
-</table>
-</body>
+<html xmlns:th="http://www.thymeleaf.org/" lang="fr">
+  <head>
+    <title>CV24 - Liste</title>
+    <meta charset="UTF-8">
+    <link th:href="@{css/listcv.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    <h1>CV24 - Liste</h1>
+    <hr/>
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Téléphone</th>
+        <th>Status de l'objectif</th>
+        <th>Objectif</th>
+        <th>Diplôme récent</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="cv : ${cvList}">
+        <td th:text="${cv.id}"></td>
+        <td th:text="${cv.identite.nom}"></td>
+        <td th:text="${cv.identite.prenom}"></td>
+        <td th:text="${cv.identite.tel}"></td>
+        <td th:text="${cv.objectif.statut}"></td>
+        <td th:text="${cv.objectif.objectif}"></td>
+        <td th:text="${cv.competences.diplomeRecent.titre}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </body>
 </html>

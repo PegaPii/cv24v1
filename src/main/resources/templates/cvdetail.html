@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <title>CV24 - Détails</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<h1>CV24 - Détails</h1>
-<h2 th:text="${cv.identite.nom} + ' ' + ${cv.identite.prenom}"></h2>
-<p>Genre : <span th:text="${cv.identite.genre}"></span></p>
-<p>Téléphone : <span th:text="${cv.identite.tel}"></span></p>
-<p>Objectif : <span th:text="${cv.objectif.statut}"></span> = <span th:text="${cv.objectif.objectif}"></span></p>
-<div th:if="${cv.prof != null}">
-<h3>Expériences professionnelles</h3>
-<ul>
-  <li th:each="exp : ${cv.prof.detail}" th:text="${exp.titre} + ' (' + ${exp.datedeb} + ' - ' + ${exp.datefin} + ') '"></li>
-</ul>
-</div>
-<h3>Compétences</h3>
-<ul>
-  <li th:each="comp : ${cv.competences.diplome}" th:text="${comp.titre} + ' (' + ${comp.niveau} + ') - ' + ${comp.date} + ' - ' + ${comp.institut}"></li>
-  <li th:each="cert : ${cv.competences.certif}" th:text="${cert.titre} + ' (' + ${cert.datedeb} + ' - ' + ${cert.datefin} + ') '"></li>
-</ul>
-<div th:if="${cv.divers != null}">
-<h3>Langues</h3>
-<ul>
-  <li th:each="lv : ${cv.divers.lv}" th:text="${lv.lang} + ' (' + ${lv.nivs} + ') - ' + ${lv.cert}"></li>
-</ul>
-<div th:if="${cv.divers.autre != null}">
-<h3>Divers</h3>
-<ul>
-  <li th:each="autre : ${cv.divers.autre}" th:text="${autre.titre} + ' (' + ${autre.comment} + ') '"></li>
-</ul>
-</div>
-</div>
-<a href="/cv24/resume">Retour à la liste des CV</a>
-</body>
+<html xmlns:th="http://www.thymeleaf.org/" lang="fr">
+  <head>
+    <title>CV24 - Détails</title>
+    <meta charset="UTF-8">
+    <link th:href="@{/cv24/css/cvdetail.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>CV24 - Détails</h1>
+    <hr/>
+    <div class="details">
+      <h2 th:text="${cv.identite.nom} + ' ' + ${cv.identite.prenom}"></h2>
+      <p>Genre : <span th:text="${cv.identite.genre}"></span></p>
+      <p>Téléphone : <span th:text="${cv.identite.tel}"></span></p>
+      <p>Objectif : <span th:text="${cv.objectif.statut}"></span> = <span th:text="${cv.objectif.objectif}"></span></p>
+      <div th:if="${cv.prof != null}">
+        <h3>Expériences professionnelles</h3>
+        <ul>
+          <li th:each="exp : ${cv.prof.detail}" th:text="${exp.titre} + ' (' + ${exp.datedeb} + ' - ' + ${exp.datefin} + ') '"></li>
+        </ul>
+      </div>
+      <h3>Compétences</h3>
+      <ul>
+        <li th:each="comp : ${cv.competences.diplome}" th:text="${comp.titre} + ' (' + ${comp.niveau} + ') - ' + ${comp.date} + ' - ' + ${comp.institut}"></li>
+        <li th:each="cert : ${cv.competences.certif}" th:text="${cert.titre} + ' (' + ${cert.datedeb} + ' - ' + ${cert.datefin} + ') '"></li>
+      </ul>
+      <div th:if="${cv.divers != null}">
+        <h3>Langues</h3>
+        <ul>
+          <li th:each="lv : ${cv.divers.lv}" th:text="${lv.lang} + ' (' + ${lv.nivs} + ') - ' + ${lv.cert}"></li>
+        </ul>
+        <div th:if="${cv.divers.autre != null}">
+          <h3>Divers</h3>
+          <ul>
+            <li th:each="autre : ${cv.divers.autre}" th:text="${autre.titre} + ' (' + ${autre.comment} + ') '"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="button">
+      <a href="/cv24/resume">Retour à la liste des CV</a>
+    </div>
+  </body>
 </html>

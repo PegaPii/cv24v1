@@ -1,5 +1,16 @@
 body {
+    font-family: Caladea, sans-serif;
+    text-align: center;
+}
 
+span {
+    font-weight: bold;
+}
+
+ul {
+    font-style: italic;
+    list-style-type: none;
+    margin-left: -2px;
 }
 
 a {
@@ -9,6 +20,11 @@ a {
     color: white;
     text-decoration: none;
     margin-top: 20px;
+}
+
+a:hover {
+    background-color: lightgray;
+    color: black;
 }
 
 img {
